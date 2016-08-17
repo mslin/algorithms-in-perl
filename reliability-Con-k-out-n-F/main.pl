@@ -55,19 +55,19 @@ sub compute_rel_con_k_out_n_F {
   *m=&fast_matrix_power();
   
   for ($i=1, $tmp=$q ; $i <= $k ; $i++, $tmp*=$q){    
-	if ($i== $k){
+    if ($i== $k){
       $linear[$k-$i+1]=1-$tmp;
     }else{
       $linear[$k-$i+1]=1;
     }
-	$circular[$k-$i+1]=1-$tmp;    
+    $circular[$k-$i+1]=1-$tmp;    
   }
 
   $rel_L=0;
   $rel_C=0;
   for ($i=1 ; $i <= $k ; $i++){    
     $rel_L += $m{1,$i}*$linear[$i];
-	$rel_C += $m{1,$i}*$circular[$i];
+    $rel_C += $m{1,$i}*$circular[$i];
   }
   return($rel_L, $rel_C);
 }
