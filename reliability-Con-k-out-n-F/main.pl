@@ -67,7 +67,7 @@ sub compute_rel_con_k_out_n_F {
   $rel_C=0;
   for ($i=1 ; $i <= $k ; $i++){    
     $rel_L += $m{1,$i}*$linear[$i];
-	$rel_C += $m{1,$i}*$circular[$i];
+    $rel_C += $m{1,$i}*$circular[$i];
   }
   return($rel_L, $rel_C);
 }
