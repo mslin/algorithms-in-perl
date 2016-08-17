@@ -14,7 +14,7 @@ $q=1-$p;
 %M=();
 %I=();
 
-print "\n== Comupte the reliability of Con/$k/$n:F system (p=$p) ==\n";
+print "\n== Compute the reliability of Con/$k/$n:F system (p=$p) ==\n";
 print "our proposed algorithm   :";
 ($linear1, $circular1)=&compute_rel_con_k_out_n_F();
 print "RL=$linear1  RC=$circular1\n";
