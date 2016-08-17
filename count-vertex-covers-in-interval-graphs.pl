@@ -30,7 +30,7 @@ while ( $test++ < 20 ){ # test 20 random instances
   &Compute_y;
   ($mvc1)=&Count_mvc();
   print "#vc=$vc1   #mvc=$mvc1\n";
-  
+    
   print "the brute-force algorithm:";
   #count vertex covers and minimal vertex covers in O(2^n) time
   ($vc2,$mvc2)=&brute_force(); 
