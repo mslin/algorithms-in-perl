@@ -1,2 +1,3 @@
 Source: Lin, M. S., & Chen, Y. J. (2009). Counting the number of vertex covers in a trapezoid graph. Information Processing Letters, 109(21), 1187-1192.
+
 Abstract: This work presents simple and efficient algorithms for a trapezoid graph. They are (1) an algorithm for counting the number of vertex covers, (2) an algorithm for counting the number of minimal vertex covers, and (3) an algorithm for counting the number of minimum vertex covers and maximum minimal vertex covers simultaneously. All the proposed algorithms have a time complexity of O(n^2), where n is the number of vertices in the trapezoid graph.
