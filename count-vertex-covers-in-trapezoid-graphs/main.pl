@@ -182,7 +182,7 @@ sub new_g{
 		}	
 	}
 	
-	@key1 = sort {$p1{$a}<=>$p1{$b}} keys(%p1);#sort by p values from right to left		
+	@key1 = sort {$p1{$a}<=>$p1{$b}} keys(%p1);#sort by p values from left to right
 	$pi=0;
 	foreach $k (@key1){#re-arrange the positions of endpoints ai and bi for all vi		
 		$pi++;
@@ -191,7 +191,7 @@ sub new_g{
 		$ab eq "a" ? $a[$v]=$pi : $b[$v]=$pi;	
 	}		
 	
-	@key2 = sort {$p2{$a}<=>$p2{$b}} keys(%p2); #sort by p values from right to left		
+	@key2 = sort {$p2{$a}<=>$p2{$b}} keys(%p2); #sort by p values from left to right
 	$pi=0;
 	foreach $k (@key2){#re-arrange the positions of endpoints ci and di for all vi		
 		$pi++;
