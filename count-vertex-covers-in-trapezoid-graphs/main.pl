@@ -88,7 +88,7 @@ sub Compute_yk{
   for ($i=0; $i<=$n+1; $i++){
     $upper_v[$a[$i]] = $i;    
     $upper_v[$b[$i]] = $i;
-	$rl[$a[$i]] = "upper_left";
+    $rl[$a[$i]] = "upper_left";
     $rl[$b[$i]] = "upper_right";
   }
 
@@ -103,12 +103,12 @@ sub Compute_yk{
       if ($X[$i][$k]){	    
         if ($rl[$p] eq "upper_right" && $d[$i] > $limit){
           $y[$k] = $y[$k] + $i;
-		}  
+        }  
         if ($rl[$p] eq "upper_left"){
-		  $limit = ($limit > $c[$i])? $limit : $c[$i];
-		}     
+          $limit = ($limit > $c[$i])? $limit : $c[$i];
+        }     
       }  
-	}
+    }
   }
 }
 
@@ -132,13 +132,13 @@ sub Compute_sk_skx {
   $s[0]=0;  $sx[0]=0;
   for ($kk=1; $kk<=$n+1; $kk++){
     $k=$torder[$kk];   
-	$s[$k]=$n+1; $sx[$k]=-1;
+    $s[$k]=$n+1; $sx[$k]=-1;
     foreach $i ($y[$k]->elements){
       if ( $s[$i]+$x_size[$k]-$x_size[$i]-1 < $s[$k] ){
          $s[$k]=$s[$i]+$x_size[$k]-$x_size[$i]-1;
-	  }	 
-	  if ( $sx[$i]+$x_size[$k]-$x_size[$i]-1 > $sx[$k] ){
-         $sx[$k]=$sx[$i]+$x_size[$k]-$x_size[$i]-1;
+      }	 
+      if ( $sx[$i]+$x_size[$k]-$x_size[$i]-1 > $sx[$k] ){
+        $sx[$k]=$sx[$i]+$x_size[$k]-$x_size[$i]-1;
 	  }	 
     }
   }
@@ -150,10 +150,10 @@ sub Compute_nsk_nskx {
   $ns[0]=$nsx[0]=1;  
   for ($kk=1; $kk<=$n+1; $kk++){
     $k=$torder[$kk];    
-	$ns[$k]=$nsx[$k]=0;
+    $ns[$k]=$nsx[$k]=0;
     foreach $i ($y[$k]->elements){      
       $ns[$k]+= $ns[$i] if ($s[$i]+$x_size[$k]-$x_size[$i]-1 == $s[$k]);
-	  $nsx[$k]+= $nsx[$i] if ($sx[$i]+$x_size[$k]-$x_size[$i]-1 == $sx[$k]);
+      $nsx[$k]+= $nsx[$i] if ($sx[$i]+$x_size[$k]-$x_size[$i]-1 == $sx[$k]);
     }
   }#for kk
   return($ns[$n+1],$nsx[$n+1]);
@@ -166,28 +166,28 @@ sub new_g{
   for ($v=1; $v <=$n ; $v++){
     # top line
     $p1{"$v#a"}=rand(1);
-	$p1{"$v#b"}=rand(1);
-	if ($p1{"$v#a"} > $p1{"$v#b"}){ #swap
-	  $tmp=$p1{"$v#b"};
-	  $p1{"$v#b"}=$p1{"$v#a"};
-	  $p1{"$v#a"}=$tmp;
-	}
-	# bottom line
+    $p1{"$v#b"}=rand(1);
+    if ($p1{"$v#a"} > $p1{"$v#b"}){ #swap
+      $tmp=$p1{"$v#b"};
+      $p1{"$v#b"}=$p1{"$v#a"};
+      $p1{"$v#a"}=$tmp;
+    }
+    # bottom line
     $p2{"$v#c"}=rand(1);
-	$p2{"$v#d"}=rand(1);
-	if ($p2{"$v#c"} > $p2{"$v#d"}){ #swap
-	  $tmp=$p2{"$v#d"};
-	  $p2{"$v#d"}=$p2{"$v#c"};
-	  $p2{"$v#c"}=$tmp;
-	}	
+    $p2{"$v#d"}=rand(1);
+    if ($p2{"$v#c"} > $p2{"$v#d"}){ #swap
+      $tmp=$p2{"$v#d"};
+      $p2{"$v#d"}=$p2{"$v#c"};
+      $p2{"$v#c"}=$tmp;
+    }	
   }
   
   @key1 = sort {$p1{$a}<=>$p1{$b}} keys(%p1); #sort by p values from right to left    
   $pi=0;
   foreach $k (@key1){  # re-arrange the positions of endpoints ai and bi for all vi    
     $pi++;
-	($v, $ab)=split("#",$k); 	
-	$top[$pi]=$v;    
+    ($v, $ab)=split("#",$k); 	
+    $top[$pi]=$v;    
     $ab eq "a" ? $a[$v]=$pi : $b[$v]=$pi;	
   }    
   
@@ -195,8 +195,8 @@ sub new_g{
   $pi=0;
   foreach $k (@key2){  # re-arrange the positions of endpoints ci and di for all vi    
     $pi++;
-	($v, $cd)=split("#",$k); 	
-	$bottom[$pi]=$v;    
+    ($v, $cd)=split("#",$k); 	
+    $bottom[$pi]=$v;    
     $cd eq "c" ? $c[$v]=$pi : $d[$v]=$pi;	
   }    
 
@@ -211,12 +211,12 @@ sub brute_force {
   $g->add_vertices(1..$n);
   for ($v=1; $v <= $n-1 ; $v++){
     for ($u=$v+1 ; $u <= $n ; $u++){
-	  if (!(($b[$v]<$a[$u] && $d[$v]<$c[$u]) || ($b[$u]<$a[$v] && $d[$u]<$c[$v]))){
-	    $g->add_edges([$v,$u]);
-	  }	
-	}
+      if (!(($b[$v]<$a[$u] && $d[$v]<$c[$u]) || ($b[$u]<$a[$v] && $d[$u]<$c[$v]))){
+        $g->add_edges([$v,$u]);
+      }	
+    }
   }	
-  
+
   $max=2**$g->vertices-1;
   @v_set = map { Set::Scalar->new() } 0..$max;
   $vc=0;  
@@ -227,17 +227,17 @@ sub brute_force {
     %cover=();
     foreach $v ($g->vertices){
       if ($bit[$v-1] == 1){ # select vertex v
-	    $v_set[$num]->insert($v);		        
+        $v_set[$num]->insert($v);		        
         foreach $e ($g->edges_at($v)){
           $edge=$$e[0].'-'.$$e[1];
           $cover{$edge}=1;  # v covers edge e
         }          
       }
     } #foreach v
-    	    
+
     if ( scalar(keys %cover) == scalar($g->edges) ){ # $v_set[$num] is a vertex cover
       $vc++; 
-	  # check if $v_set[$num] is a minimal vertex cover
+      # check if $v_set[$num] is a minimal vertex cover
       $min_vc_tag[$num]=1;	                 
       foreach $i (0..$num-1){
         if ($min_vc_tag[$i]==1){          

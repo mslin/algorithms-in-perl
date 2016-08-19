@@ -100,10 +100,10 @@ sub brute_force {
   %adj=();
   for ($v=1; $v <= $n-1 ; $v++){
     for ($u=$v+1 ; $u <= $n ; $u++){
-	  if (!($b[$v] < $a[$u] || $b[$u] < $a[$v])){
-	    $g->add_edges([$v,$u]);
-	  }	
-	}
+      if (!($b[$v] < $a[$u] || $b[$u] < $a[$v])){
+        $g->add_edges([$v,$u]);
+      }	
+    }
   }	
   
   $max=2**$g->vertices-1;
@@ -118,7 +118,7 @@ sub brute_force {
     %cover=();
     foreach $v ($g->vertices){
       if ($bit[$v-1] == 1){ # select vertex v
-	    $v_set[$num]->insert($v);		        
+        $v_set[$num]->insert($v);		        
         foreach $e ($g->edges_at($v)){
           $edge=$$e[0].'-'.$$e[1];
           $cover{$edge}=1;  # v covers edge e
@@ -126,10 +126,10 @@ sub brute_force {
       }
     } #foreach v
     @cover_edge=keys %cover;
-	
+
     if ( scalar(keys %cover) == scalar($g->edges) ){ # $v_set[$num] is a vertex cover
       $vc++; 
-	  # check if $v_set[$num] is a minimal vertex cover
+      # check if $v_set[$num] is a minimal vertex cover
       $min_vc_tag[$num]=1;	                 
       foreach $i (0..$num-1){
         if ($min_vc_tag[$i]==1){          
@@ -161,14 +161,14 @@ sub new_g{
   %p=();
   for ($v=1; $v <=$n ; $v++){
     $p{"$v#a"}=rand(1);
-	$p{"$v#b"}=rand(1);
-	if ($p{"$v#a"} > $p{"$v#b"}){ #swap
-	  $tmp=$p{"$v#b"};
-	  $p{"$v#b"}=$p{"$v#a"};
-	  $p{"$v#a"}=$tmp;
-	}
+    $p{"$v#b"}=rand(1);
+    if ($p{"$v#a"} > $p{"$v#b"}){ #swap
+      $tmp=$p{"$v#b"};
+      $p{"$v#b"}=$p{"$v#a"};
+      $p{"$v#a"}=$tmp;
+    }
   }
-  
+
   # assume vertices from 1 to n are labeled according to their ascending right endpoints (b)
   @key = sort {$p{$b}<=>$p{$a}} keys(%p); #sort by p values from right to left
   
@@ -177,15 +177,15 @@ sub new_g{
   $v=$n; # label vertex from right to left in descending order ( from n to 1)
   foreach $k (@key){  # re-arrange the positions of endpoints ai and bi for all vi    
     ($vx, $ab)=split("#",$k); 	
-	$ab_tag[$pi]=$ab; 	  	  
-	if ($ab eq "b"){ #right endpoint
-	  $v_tag[$pi]=$v;# label vertex v on endpoint pi
-	  $b[$v]=$pi;	  
-	  $v[$vx]=$v;  # mark vx==>v
-	  $v--;
-	}else{ # left endpoint
-	  $v_tag[$pi]=$v[$vx];
-	  $a[$v[$vx]]=$pi;
+    $ab_tag[$pi]=$ab; 	  	  
+    if ($ab eq "b"){ #right endpoint
+      $v_tag[$pi]=$v;# label vertex v on endpoint pi
+      $b[$v]=$pi;	  
+      $v[$vx]=$v;  # mark vx==>v
+      $v--;
+    }else{ # left endpoint
+      $v_tag[$pi]=$v[$vx];
+      $a[$v[$vx]]=$pi;
     }	
     $pi--;	
   }	
