@@ -22,17 +22,13 @@ while ( $test++ < 20 ){ # test 20 random instances
   print "\n== test$test: interval representation: @v_tag ==\n";
   
   print "our proposed algorithm   :";
-  #count vertex covers in O(n) time
   &Compute_x;
-  ($vc1)=&Count_vc();  
-  
-  #count minimal vertex covers in O(n) time
+  ($vc1)=&Count_vc();    
   &Compute_y;
   ($mvc1)=&Count_mvc();
   print "#vc=$vc1   #mvc=$mvc1\n";
     
-  print "the brute-force algorithm:";
-  #count vertex covers and minimal vertex covers in O(2^n) time
+  print "the brute-force algorithm:";  
   ($vc2,$mvc2)=&brute_force(); 
   print "#vc=$vc2   #mvc=$mvc2\n";
   
@@ -110,61 +106,50 @@ sub brute_force {
 	}
   }	
   
-  #print "Interval graph: ",$g;
-  #print "\n";
-  
   $max=2**$g->vertices-1;
   
-  @vc_set=();
-  @vc_set = map { Set::Scalar->new() } 0..$max;
-  $number_vc=0;
+  @v_set=();
+  @v_set = map { Set::Scalar->new() } 0..$max;
+  $vc=0;
   @min_vc_tag=();
   foreach $num (0..$max){
     $bits = unpack ( "B*", pack("N",$num) );    
-    @bit =reverse(split(//,$bits));     
-	
+    @bit =reverse(split(//,$bits));     	
     %cover=();
-    foreach $vs ($g->vertices){
-      if ($bit[$vs-1] == 1){
-        @edges=$g->edges_at($vs);
-        foreach $a (@edges){
-          $edge=$$a[0].'-'.$$a[1];
-          $cover{$edge}=1;
-        }  
-        $vc_set[$num]->insert($vs);
+    foreach $v ($g->vertices){
+      if ($bit[$v-1] == 1){ # select vertex v
+	    $v_set[$num]->insert($v);		        
+        foreach $e ($g->edges_at($v)){
+          $edge=$$e[0].'-'.$$e[1];
+          $cover{$edge}=1;  # v covers edge e
+        }          
       }
-    } #foreach vs
+    } #foreach v
     @cover_edge=keys %cover;
 	
-    $vc=$vc_set[$num];
-    if ( scalar(@cover_edge) == scalar($g->edges) ){
-      $number_vc++;
-      $flag=1;
+    if ( scalar(keys %cover) == scalar($g->edges) ){ # $v_set[$num] is a vertex cover
+      $vc++; 
+	  # check if $v_set[$num] is a minimal vertex cover
+      $min_vc_tag[$num]=1;	                 
       foreach $i (0..$num-1){
-        if ($min_vc_tag[$i]==1){
-          $mvi=$vc_set[$i];
-          if ( $vc->is_proper_subset($mvi) ){
-            $min_vc_tag[$i]=0;
-            $flag=1;
-          }elsif ( $vc->is_proper_superset($mvi) ){
-            $flag=0;
+        if ($min_vc_tag[$i]==1){          
+          if ( $v_set[$num]->is_proper_subset($v_set[$i]) ){
+            $min_vc_tag[$i]=0; # $v_set[$i] is not a minimal vertex cover            
+          }elsif ( $v_set[$num]->is_proper_superset($v_set[$i]) ){
+            $min_vc_tag[$num]=0; # $v_set[$num] is not a minimal vertex cover            
             break;
           }
         }
-      } #foreach    
-      if ($flag==1){
-        $min_vc_tag[$num]=1;
       }
-    } #if scalar
-  }#foreach $num
-
-  $number_min_vc=0;
-  for ($i=0; $i <= $max ; $i++){
-    if ($min_vc_tag[$i]==1){
-      $number_min_vc++;
     }
   }
-  return($number_vc, $number_min_vc);
+  $mvc=0;
+  for ($i=0; $i <= $max ; $i++){
+    if ($min_vc_tag[$i]==1){
+      $mvc++;
+    }
+  }
+  return($vc, $mvc);
 }
 
 # create a random interval graph
