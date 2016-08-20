@@ -52,10 +52,8 @@ while ( $test++ < 20 ){ # test 20 random instances
 }										 
 print "\n Tests completed successfully.\n";
 
-sub compute_KTR{
-	my $i,$j,$alpha;
-	my @prR=();
-
+sub compute_KTR{	
+	@prR=();
 	$Q[$m+1]= Set::Scalar->new; # dummy scanline m+1
 	$ps[$m+1]= Set::Scalar->new;# dummy scanline m+1
 	for ($i=1 ; $i <= $m ; $i++){
@@ -76,7 +74,6 @@ sub compute_KTR{
 }
 
 sub compute_all_scanlines_and_Qs {
-
   # compute LK=(min_a, min_c) and RK=(max_b, max_d), and the source and terminal vertices for using in brute force algorithm
 	$min_a=$min_c=2*$n+1; 
 	$max_b=$max_d=-1;
