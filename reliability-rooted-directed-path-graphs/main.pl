@@ -71,7 +71,7 @@ sub Compute_KTR {
 	&Compute_PrEC();
 		
 	$ktr=1;
-	$x=&Compute_LCA();# lowest common ancestor 
+	$x=&Compute_LCA();# compute the Lowest Common Ancestor between all target clique nodes
 	foreach $xx ($x->getAllChildren()){
 		$ktr *= $PrEC[$kr->getUID][$xx->getUID];
 	}	 
@@ -129,7 +129,7 @@ sub compute_S_C {
 	}); # end of traverse
 }
 
-sub Compute_PrEF {  # refer to our paper (new version)   
+sub Compute_PrEF {
 	for $kk (0 .. $#reverse_order) {  
 		$k=$reverse_order[$kk]; # the clique node k in the tree
 		$kUID=$k->getUID;
@@ -182,9 +182,9 @@ sub Compute_PrEC {
 	}
 }
 
-# compute the Lowest Common Ancestor between all target vertices
+# compute the Lowest Common Ancestor between all target clique nodes
 sub Compute_LCA {
-	#find the target cliques which contain some target vertices  
+	#first, find the target clique nodes which contain some target vertices  
 	$k_clique_set=Set::Scalar->new(); 
 	$dummyrootnode = Tree::Simple->new();
 	$dummyrootnode->addChild($kr); # note: since the traverse-sub begins from its children, we add this dummy node 
@@ -199,7 +199,7 @@ sub Compute_LCA {
 		});		
 	return(0) if ($k_clique_set->is_empty);
 	
-	#find the LCA of target cliques nodes  
+	#Second, find the LCA between all target clique nodes
 	@k_clique_set=$k_clique_set->elements;	
 	$klca=pop @k_clique_set;    
 	while (($kx=pop @k_clique_set)){      

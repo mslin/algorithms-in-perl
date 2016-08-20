@@ -159,7 +159,7 @@ sub dfs{
   
 	$s=$t->getNodeValue();
 	@elements=$s->elements; 
-	# all vertices in clique node s are connected to each other
+	# all vertices in clique node t are connected to each other
 	for ($i=0; $i < $s->size - 1; $i++){
 		for ($j=$i+1; $j < $s->size ; $j++){    
 			$g->add_edge($elements[$i], $elements[$j]);
