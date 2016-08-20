@@ -32,7 +32,7 @@ while ( $test++ < 20 ){ # test 20 random instances
 	$mis2=&brute_force();
 	print "#MIS=$mis2\n";
   
-  if ($mis2!='' && $mis1 != $mis2){
+	if ($mis2!='' && $mis1 != $mis2){
 		print "An error occured. Stop!\n";
 		exit;
 	}
@@ -101,8 +101,7 @@ sub COUNT {
 }
 
 sub create_clique_tree {
-	$uid=1; # the clique node id;
-  my($i,$n,$s,$j,$child,$fp,$fps,$k,$ki,$ksize,@queue,@knode_member, @kinode_member);
+	$uid=1; # the clique node id;	
 	$n=int(rand($max_node_size))+1; # 1 ~ $max_node_size 
 	$kr = Tree::Simple->new(Set::Scalar->new(1..$n));
 	$kr->setUID(++$uid);
@@ -170,7 +169,7 @@ sub dfs{
 
 # brute force algorithm
 sub brute_force {	
-  return("") if ( scalar($g->vertices) > 16); 
+	return("") if ( scalar($g->vertices) > 16); 
 	$max=2**$g->vertices-1;	
 	@v_set=();
 	@v_set = map { Set::Scalar->new() } 0..$max;
@@ -217,13 +216,12 @@ sub brute_force {
 }
 
 sub print_clique_tree{
-  my($tree)=@_;		
-	
+	my($tree)=@_;		
 	print "|V|=",scalar($g->vertices), " and |E|=",scalar($g->edges),"\n";
-  print "root=",$tree->getNodeValue(),"\n";
-  $tree->traverse(sub {
-      my ($_tree) = @_;
-      print (("\t" x ($_tree->getDepth()+1)), $_tree->getNodeValue(), "\n");
-  });
+	print "root=",$tree->getNodeValue(),"\n";
+	$tree->traverse(sub {
+		my ($_tree) = @_;
+		print (("\t" x ($_tree->getDepth()+1)), $_tree->getNodeValue(), "\n");
+	});
 	print "\n";
 }
