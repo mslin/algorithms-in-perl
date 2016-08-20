@@ -1,4 +1,4 @@
-#!/usr/local/bin/perl
+#!/usr/bin/perl
 #
 # compute the K-terminal reliability of a d-trapezoid graph (note: test only the case of d=2)
 #
