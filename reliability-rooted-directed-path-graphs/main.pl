@@ -264,7 +264,7 @@ sub construct_graph{
 	$g = Graph::Undirected->new();
 	&dfs($root);  # construct the corresponding graph g and tag the k target vertices 
 
-	foreach $v ($g->vertices){  # set the operational probability for each vertices
+	foreach $v ($g->vertices){  # set the operational probability for each vertex
 		if ($k_tag[$v] ){ # v is a target vertex
 			$p[$v]=1;
 			$q[$v]=0;
