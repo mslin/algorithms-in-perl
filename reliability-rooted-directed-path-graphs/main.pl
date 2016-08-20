@@ -131,7 +131,7 @@ sub compute_S_C {
 
 sub Compute_PrEF {  # refer to our paper (new version)   
 	for $kk (0 .. $#reverse_order) {  
-		$k=$reverse_order[$kk]; # ki is the clique node i in the tree
+		$k=$reverse_order[$kk]; # the clique node k in the tree
 		$kUID=$k->getUID;
 		$PrEF[$kUID][$kUID]=1; # initial condition  PrEF(k,k)=1;
 	}
@@ -148,7 +148,7 @@ sub Compute_PrEF {  # refer to our paper (new version)
 			}
 		}    
 		foreach $v ($S[$k2UID]->elements){ # foreach v in s(k+)
-			foreach $hUID ($C[$v]->elements){ # foreach node h in c(v)	   		
+			foreach $hUID ($C[$v]->elements){ # foreach node h in C(v)
 				if ( $kUID==$hUID || $ancestor[$hUID][$kUID] ){ # if h is in T(k)
 					$PrEF[$k2UID][$hUID]=$PrEF[$k2UID][$hUID]*$q[$v];
 				}
@@ -161,10 +161,10 @@ sub Compute_PrEC {
 	for $kk (0 .. $#reverse_order) { # for k in T(r) in reverse topological order
 		$k=$reverse_order[$kk];
 		$kUID=$k->getUID;
-		for $hh (0 .. $#reverse_order) { # for h in T(k)-i in reverse topological order
+		for $hh (0 .. $#reverse_order) { # for h in T(k)-k in reverse topological order
 			$h=$reverse_order[$hh];
 			$hUID=$h->getUID;
-			if ( $ancestor[$hUID][$kUID] ){ # h in T(k)-i ==>  k is the ancestor of h
+			if ( $ancestor[$hUID][$kUID] ){ # h in T(k)-k ==>  k is the ancestor of h
 				if ($h->isLeaf){
 					$PrEC[$kUID][$hUID]=1-$PrEF[$kUID][$hUID];   		  
 				}else{   
@@ -262,7 +262,7 @@ sub construct_graph{
 	@k_tag=();  # reset k target vertices
 	@k_set=();  
 	$g = Graph::Undirected->new();
-	&dfs($root);  # construct the corresponding graph g and tag the k target vertices
+	&dfs($root);  # construct the corresponding graph g and tag the k target vertices 
 
 	foreach $v ($g->vertices){  # set the operational probability for each vertices
 		if ($k_tag[$v] ){ # v is a target vertex
@@ -274,7 +274,8 @@ sub construct_graph{
 		}	
 	}
 }
-  
+
+# depth first search  
 sub dfs{
 	my ($t)=@_;  
 	my ($i, $j, $c,$s,@elements, $diff);
@@ -286,22 +287,22 @@ sub dfs{
 	$tset=$t->getNodeValue();
 	@elements=$tset->elements;
 	$g->add_vertices(@elements);
-	# all vertices in clique node s are connected to each other	
+	# all vertices in clique node t are connected to each other	
 	for ($i=0; $i < $tset->size - 1; $i++){
 		for ($j=$i+1; $j < $tset->size ; $j++){    
 			$g->add_edge($elements[$i], $elements[$j]);
 		}
 	}	
-	#check if $t is a leaf node
+	#check if t is a leaf node
 	if ( $t->isLeaf){
 		if ($t->isRoot){
 			$diff=$tset; # if root is a leaf node (only one root node), all vertices in root are k target nodes
 		}else{   
 			my $t2set=$t->getParent->getNodeValue();
-			$diff=$tset-$t2set;  # diff denotes the vertices in s but not in the parent of s
+			$diff=$tset-$t2set;  # diff denotes the vertices in t but not in the parent of t
 		}  
 		for my $v ($diff->elements){ # let the vertices in a leaf node but not in its parent node be K-target nodes
-			$k_tag[$v]=1;  # tag v to be a K target vertex
+			$k_tag[$v]=1;  # mark v being a target vertex
 			push(@k_set,$v);
 		}	
 	}
@@ -333,7 +334,7 @@ sub brute_force {
 			break if ($pr==0);
 		}
 
-		next if ($pr==0);  # some of K target vertices fail    
+		next if ($pr==0);  # some of target vertices fail 
 		if ($h->same_connected_components(@k_set)){
 			$ktr += $pr;
 		}    
