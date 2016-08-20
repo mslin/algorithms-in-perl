@@ -71,7 +71,7 @@ sub Compute_KTR {
 	&Compute_PrEC();
 		
 	$ktr=1;
-	$x=&Compute_LCA();
+	$x=&Compute_LCA();# lowest common ancestor 
 	foreach $xx ($x->getAllChildren()){
 		$ktr *= $PrEC[$kr->getUID][$xx->getUID];
 	}	 
@@ -182,6 +182,7 @@ sub Compute_PrEC {
 	}
 }
 
+# compute the Lowest Common Ancestor between all target vertices
 sub Compute_LCA {
 	#find the target cliques which contain some target vertices  
 	$k_clique_set=Set::Scalar->new(); 
