@@ -49,7 +49,7 @@ while ( $test++ < 20 ){ # test 20 random instances
 		print "An error occured. Stop!\n";
 		exit;
 	}	
-  $kr->DESTROY();  
+	$kr->DESTROY();  
 }
 print "\n Tests completed successfully.\n";
 
@@ -80,7 +80,7 @@ sub Compute_KTR {
 
 sub post_order_travesal{
 	my($t)=@_;     
-  my($c);
+	my($c);
 	return if (!$t); # null node
 	foreach $c ($t->getAllChildren()){
 		&post_order_travesal($c); 
@@ -105,9 +105,9 @@ sub compute_S_C {
 	#C(v):set of clique nodes which contain vertex v
 	
 	#compute S(i);					
-  $S[$kr->getUID]= Set::Scalar->new;
-  $S[$kr->getUID]= $kr->getNodeValue; # initial value for root node; S(r)=v(r)
-  $kr->traverse(sub { #Note:root kr will not be traversed root since traversing begin from kr->child
+	$S[$kr->getUID]= Set::Scalar->new;
+	$S[$kr->getUID]= $kr->getNodeValue; # initial value for root node; S(r)=v(r)
+	$kr->traverse(sub { #Note:root kr will not be traversed root since traversing begin from kr->child
 			my ($k) = @_;
 			$S[$k->getUID]= Set::Scalar->new;  
 			my $k2=$k->getParent;
@@ -129,18 +129,15 @@ sub compute_S_C {
 	}); # end of traverse
 }
 
-sub Compute_PrEF {  # refer to our paper (new version)
-  my ($i,$j, $ki, $kj, $kiUID, $kjUID, $ki2, $ki2UID);
-    
-  for $kk (0 .. $#reverse_order) {  
-    $k=$reverse_order[$kk]; # ki is the clique node i in the tree
-    $kUID=$k->getUID;
-    $PrEF[$kUID][$kUID]=1; # initial condition  PrEF(k,k)=1;
-  }
-  for $kk (0 .. $#reverse_order-1) { # for k in T(r)-r in reverse topological order (it must be in the reverse order)
-    $k=$reverse_order[$kk];
-    $kUID=$k->getUID;
-
+sub Compute_PrEF {  # refer to our paper (new version)   
+	for $kk (0 .. $#reverse_order) {  
+		$k=$reverse_order[$kk]; # ki is the clique node i in the tree
+		$kUID=$k->getUID;
+		$PrEF[$kUID][$kUID]=1; # initial condition  PrEF(k,k)=1;
+	}
+	for $kk (0 .. $#reverse_order-1) { # for k in T(r)-r in reverse topological order (it must be in the reverse order)
+		$k=$reverse_order[$kk];
+		$kUID=$k->getUID;
 		$k2UID=$k->getParent->getUID; # k2=k+ => denote the parent of k
 		
 		for $hh (0 .. $#reverse_order-1) { # (it is not necessary in the reverse order)
@@ -161,7 +158,6 @@ sub Compute_PrEF {  # refer to our paper (new version)
 }
 
 sub Compute_PrEC {
-	my($i,$j,$ki,$kj, $kiUID, $kjUID, $kjx, $kjxUID);
 	for $kk (0 .. $#reverse_order) { # for k in T(r) in reverse topological order
 		$k=$reverse_order[$kk];
 		$kUID=$k->getUID;
@@ -202,19 +198,19 @@ sub Compute_LCA {
 		});		
 	return(0) if ($k_clique_set->is_empty);
 	
-  #find the LCA of target cliques nodes  
-  @k_clique_set=$k_clique_set->elements;	
+	#find the LCA of target cliques nodes  
+	@k_clique_set=$k_clique_set->elements;	
 	$klca=pop @k_clique_set;    
 	while (($kx=pop @k_clique_set)){      
 		$klca=&LCA($klca, $kx);
-  }  
-  return($klca);
+	}  
+	return($klca);
 }
 
 sub LCA {
-  my ($kx, $ky)=@_;
-  return $ky if (($kx->getUID == $ky->getUID) || $ancestor[$kx->getUID][$ky->getUID] );  
-  return ( &LCA($ky->getParent, $kx) );
+	my ($kx, $ky)=@_;
+	return $ky if (($kx->getUID == $ky->getUID) || $ancestor[$kx->getUID][$ky->getUID] );  
+	return ( &LCA($ky->getParent, $kx) );
 }
 
 sub create_clique_tree {
@@ -296,7 +292,7 @@ sub dfs{
 			$g->add_edge($elements[$i], $elements[$j]);
 		}
 	}	
-  #check if $t is a leaf node
+	#check if $t is a leaf node
 	if ( $t->isLeaf){
 		if ($t->isRoot){
 			$diff=$tset; # if root is a leaf node (only one root node), all vertices in root are k target nodes
@@ -317,7 +313,7 @@ sub brute_force {
 		return("");
 	}   
 	$max=2**$n-1;
-  $ktr=0;
+	$ktr=0;
 	foreach $i (0..$max){
 		$h = $g->copy_graph;
 		$used_1[1];  
@@ -330,7 +326,7 @@ sub brute_force {
 			$px=$p[$v];
 			if ($bit[$v-1] == 1){ # v is working	
 				$pr=$pr*$px;
-      }else{ # v is failed
+			}else{ # v is failed
 				$pr=$pr*(1-$px);
 				$h->delete_vertex($v);
 			}
