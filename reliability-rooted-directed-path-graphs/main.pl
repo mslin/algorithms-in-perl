@@ -26,7 +26,7 @@ $q=1-$p;
 @k_tag=();  # store the tag whether v is in k_set
 @reverse_oredr=();
 @S=();  #S(i): set of vertices which start at node i; S(i)=v(i)- v(i+) 
-@C=();  #C(v): set of clique nodes which contains vertex v
+@C=();  #C(v): set of clique nodes which contain vertex v
 @PrEF=();
 @PrEC=();
 
