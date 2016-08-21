@@ -42,10 +42,10 @@ while ( $test++ < 20 ){ # test 20 random instances
 	print "KTRR=$ktrr1\n";
 	
 	print "the brute-force algorithm: ";		
-  $ktrr2=&brute_force();
+	$ktrr2=&brute_force();
 	print "KTRR=$ktrr2\n";
   
-  if (($ktrr1 - $ktrr2 ) > 0.000001 || ($ktrr2 - $ktrr1 ) > 0.000001 ){
+	if (($ktrr1 - $ktrr2 ) > 0.000001 || ($ktrr2 - $ktrr1 ) > 0.000001 ){
 		print "An error occured. Stop!\n";
 		exit;
 	}
@@ -93,7 +93,7 @@ sub Compute_SS {
 	%qst_nk=();
 	
 	$tx=$bx=2*$n+0.5;  # dummy scanline
-  $Q[$tx][$bx]= Set::Scalar->new;  # empty sets for the dummy scanline
+	$Q[$tx][$bx]= Set::Scalar->new;  # empty sets for the dummy scanline
 	
 	for ($v=1 ; $v <= $n ; $v++){
 		$SS[$v]= Set::Scalar->new; # the set of qst(sj-si) in which v is contained
@@ -113,7 +113,7 @@ sub Compute_SS {
 				for ($b2=$bottom_min; $b2 <= $b1; $b2++){
 				
 					next if ($t1==$t2 && $b1==$b2);	  
-	        #--- compute SS, qst
+					#--- compute SS, qst
 					$st="$t2:$b2".'-'."$t1:$b1"; # denote the pair (s,t)
 					if (!defined($qst{$st})){						
 						$w_st=$Q[$t2][$b2]-$Q[$t1][$b1];
@@ -128,7 +128,7 @@ sub Compute_SS {
 						}
 					}
 				}}		  
-	      #-- for dummy scanline
+				#-- for dummy scanline
 				$st="$t1:$b1-$tx:$bx";  
 				$w_st=$Q[$t1][$b1]-$Q[$tx][$bx];
 				$qst{$st}=1; # the value of prob(st)     	 
