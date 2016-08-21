@@ -1,6 +1,6 @@
-#!/usr/local/bin/perl
+#!/usr/bin/perl
 #
-# Compute the 2-terminal reliability of a multitolerance graph
+# Compute the 2-terminal reliability of a multi-tolerance graph
 #
 # by Min-Sheng Lin
 #
