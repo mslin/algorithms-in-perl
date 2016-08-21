@@ -85,7 +85,6 @@ sub Compute_Q {
 	}}
 }
 
-
 sub Compute_SS {
 
 	@SS=();
@@ -210,7 +209,6 @@ sub reset_all_qst_k{
 		}
 	}
 }
-
 
 #compute the 2-terminal reliability (from node $x to node $y)
 sub compute_two_terminal_rel{  
