@@ -9,11 +9,11 @@ use Graph;
 $|=1;
 
 #globals
-$n=9; # the number of nodes (problem size)
+$n=9; # the number of vertices (problem size)
 $u_ratio=0.5; # the probability that a vertex is a unbounded
 $p=0.7;    $q=1-$p;
 
-@p=();   # the reliability of each node, target node=1, nontarget node=$p
+@p=();   # the reliability of each vertex, target vertex=1, nontarget vertex=$p
 $U = Set::Scalar->new;     # store unbounded vertices
 $B = Set::Scalar->new;     # store bounded vertices
 @v_ub_tag=();     # store the tags (bounded or unbounded) of vertices
@@ -119,8 +119,8 @@ sub Compute_V_P {
 			$V_map_t[$k]=$t;  	 
 			$V_map_invert{"$b#$t"}=$k;
 			for($v=1; $v <= $n ; $v++){
-				next if ($pd[$v] < $pa[$source] && $pb[$v] < $pc[$source] );  # skip the nodes on the leftside of the (unbounded)soruce node
-				next if ($pa[$v] > $pd[$terminal] && $pc[$v] > $pb[$terminal] );# skip the nodes on the rightside of the (unbounded)terminal node	   
+				next if ($pd[$v] < $pa[$source] && $pb[$v] < $pc[$source] );  # skip the vertices on the leftside of the (unbounded)soruce vertex
+				next if ($pa[$v] > $pd[$terminal] && $pc[$v] > $pb[$terminal] );# skip the vertices on the rightside of the (unbounded)terminal vertex	   
 				if ($v_ub_tag[$v] eq 'bounded'){ # v is bounded
 					$V[$k]->insert($v) if (!(($pb[$v] < $t && $pd[$v] < $b) || ($pc[$v] > $t && $pa[$v] > $b)));
 				} else { # v is unbounded
