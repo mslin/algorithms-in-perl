@@ -70,12 +70,12 @@ while ( $test++ < 20 ){ # test 20 random instances
 	&print_normalized_trapezoid_representation();
 	print "\n";
 	
-  print "our proposed algorithm	 : ";	
+	print "our proposed algorithm	 : ";	
 	$rel1=&Compute_2TR();
 	print "2TR=$rel1\n";
 	
 	print "the brute-force algorithm: ";
-  $rel2=&brute_force();
+	$rel2=&brute_force();
 	print "2TR=$rel2\n";
 	
 	if (($rel1 - $rel2) > 0.000001 || ($rel2 - $rel1)> 0.000001){
@@ -257,12 +257,12 @@ sub brute_force {
 
 # convert a multi-tolerance diagram to the corresponding multi-tolerance graph g
 sub construct_g {
-  $g = Graph::Undirected->new();
-  for($v=1; $v <= $n ; $v++){  
-    $g->add_vertex($v);
-  }
-
-#---- check edge connection (using the definition of multitolerance) ----------
+	$g = Graph::Undirected->new();
+	for($v=1; $v <= $n ; $v++){  
+		$g->add_vertex($v);
+	}
+	
+# check edge connection (using the definition of multitolerance)
 # notation in definition: e.g. lv-------ltv-------rtv----rv  or lv----rtv-----ltv--rv
 # note: lv=$a[$v]; rv=$b[$v]; ltv=$a[$v]+$lt[$v](=$c[$v]); rtv=$b[$v]-$rt[$v](=$d[$v]);
 # definition: tv(x)=[ltv(x), rtv(x)]==> ltv(x)=lv+(rtv-lv)*x; rtv(x)=ltv+(rv-ltv)*x  ;  0<=x<=1
