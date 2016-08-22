@@ -81,7 +81,7 @@ print "\n Tests completed successfully.\n";
 
 # use the parallelograms representation; scan the pc[v],pb[v] from left to right on the topline and increment the L(u,v)
 # overall complexity: O(n^2) 
-sub compute_IS {  # note: s(u,v)=L(u,v)+R(v)
+sub compute_IS {
 	#compute the size of R(k)
 	@IS=@nR=();
 	foreach $k ($B->elements){      
