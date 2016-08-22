@@ -10,7 +10,7 @@ $|=1;
 
 #globals
 $n=9; # the number of vertices (problem size)
-$u_ratio=0.5; # the probability that a vertex is a unbounded
+$u_ratio=0.5; # the probability that a vertex is an unbounded
 $p=0.7;    $q=1-$p;
 
 @p=();   # the reliability of each vertex, target vertex=1, nontarget vertex=$p
@@ -500,7 +500,7 @@ sub print_multitolerance_graph {
 }
 
 sub print_normalized_trapezoid_representation {
-	print "normalized trapezoid representation (* denote a unbounded vertex):\n";
+	print "normalized trapezoid representation (*: unbounded vertex):\n";
 	for ($i=0; $i < $all_max ; $i++){	  
 		print " $v_tag[$i]";
 		print "*" if ($ub_tag[$i] eq "unbounded");		
