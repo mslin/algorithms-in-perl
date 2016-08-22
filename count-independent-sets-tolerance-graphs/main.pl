@@ -119,16 +119,15 @@ sub compute_IS {  # note: s(u,v)=L(u,v)+R(v)
 # use the parallelograms representation pa[v], pd[v] for marking the leftmost clique boundary
 # overall complexity: O(n^2)  
 sub compute_MIS {
-
 	@MIS=();  # MIS  (maximal indpendent st)
-  @IPDS=(); # for IPDS (Independent Perfect Dominating Set)    
-  @RN_sum=();  # for IDPS part
-  $LN_sum=0;   # for IPDS part
+	@IPDS=(); # for IPDS (Independent Perfect Dominating Set)    
+	@RN_sum=();  # for IDPS part
+	$LN_sum=0;   # for IPDS part
 	
 	# Step 1: Compute F(u) for each u in U
-  foreach $u ($U->elements){
-    $F[$u] = Set::Scalar->new;  # reset
-  }  
+	foreach $u ($U->elements){
+		$F[$u] = Set::Scalar->new;  # reset
+	}  
 	foreach $v ($B->elements){      
 		$MIS[$v]=0;
 		$IPDS[$v]=0;
@@ -243,8 +242,8 @@ sub compute_N { # compute N+[] ; N-[]; Nall[];
 
 #produce the topological order according to b values
 sub topology_sort_bounded {
-  @torder=();    
-  @torder= (sort {$b[$a]<=>$b[$b]} $B->elements); # sort by b values	
+	@torder=();    
+	@torder= (sort {$b[$a]<=>$b[$b]} $B->elements); # sort by b values	
 }
 
 # construct a random tolerance graph
