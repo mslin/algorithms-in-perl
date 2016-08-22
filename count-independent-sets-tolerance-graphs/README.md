@@ -1,0 +1,3 @@
+**Source:** Lin, M. S., & Su, S. H. (2015). Counting independent sets in a tolerance graph. Discrete Applied Mathematics, 181(1), 174-184.
+
+**Abstract:**  Counting independent sets is a #P-complete problem for general graphs but solvable in polynomial time for interval and permutation graphs. This paper develops some polynomial time algorithms for counting independent sets, maximal independent sets, and independent perfect dominating sets in a tolerance graph, which is a common generalization of interval and permutation graphs. No algorithm for solving those problems for tolerance graphs is currently available.
