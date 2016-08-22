@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #
-# Conut independet sets(IS), maximal independent sets(MIS), and independent perfect dominating sets(IPDS) in a tolerance graph
+# Count independet sets(IS), maximal independent sets(MIS), and independent perfect dominating sets(IPDS) in a tolerance graph
 #
 # by Min-Sheng Lin
 #
