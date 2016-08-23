@@ -44,7 +44,7 @@ sub Compute_x {
 	for ($p=1; $p <= 2*$n ; $p++){
 		$k=$v_tag[$p];
 		$lr=$lr_tag[$p];
-    if ($lr eq 'l'){# left boundary
+		if ($lr eq 'l'){# left boundary
 			$x[$k]=$h;
 		}else{# right boundary
 			$h=$k;
@@ -85,16 +85,16 @@ sub Count_n_alpha {
 			$na[$k]=$na[$k-1];
 		}elsif($a[$k-1]+1 > $t){
 			$na[$k]=$na[$x[$k]];
-    }else{ # $a[$k-1]+1==$t
+		}else{ # $a[$k-1]+1==$t
 			$na[$k]=$na[$k-1]+$na[$x[$k]];
-    }		
+		}		
 	}
 	return ($na[$n]);
 }
 
 sub Fast_Count_n_belta {	
-	@b=(); # 'b' denotes the "belta" in the paper
-	@nb=();# 'nb' denotes the "#belta" in the paper
+	@b=(); # 'b(i)' denotes the "belta(i)" in the paper
+	@nb=();# 'nb(i)' denotes the "#belta(i)" in the paper
 	@Q=(); # double end queue
 	# Double end Queue Q
 	#-------------------<<------ PUSH
@@ -108,20 +108,20 @@ sub Fast_Count_n_belta {
 	@Q=(0);# initial value
 	$nb[0]=1; # initial value	
 	for ($k=1; $k <= $n ; $k++){
-		if (&bs($k,$k) > &bs($k,$Q[0])){# step 1
+		if (&bs($k,$k) > &bs($k,$Q[0])){# step 1, bs(i,j) denotes the "belta(i,j)" in the paper
 			@Q=(); # empty queue
 			push @Q,$k; # append k to the rear of Q
 			$b[$k]=&bs($k,$k);
-			$nb[$k]=$nb[$x[$k]];
+			$nb[$k]=$nb[$x[$k]]; # nb(x(i)) denotes the "#belta(*,i) in the paper
 		}else{# step 2
 			$nb[$k]=$nb[$k-1];
 			while ( defined($Q[0]) && $Q[0] < ($y[$k]+1) ){# Q[0] denotes the front of Q, Q(F)
 				if (&bs($k-1,$Q[0])==$b[$k-1]){
-           $nb[$k]=$nb[$k]-$nb[$x[$Q[0]]];
+					$nb[$k]=$nb[$k]-$nb[$x[$Q[0]]];
 				}
-        shift @Q;# pop front Q
+				shift @Q;# pop front Q
 			}
-			while (defined($Q[-1]) && (&bs($k,$Q[-1]) < &bs($k,$k)) ){# Q[-1] dentoes the rear of Q, Q(R)
+			while (defined($Q[-1]) && (&bs($k,$Q[-1]) < &bs($k,$k)) ){# step 3, Q[-1] dentoes the rear of Q, Q(R)
 				pop @Q; # remove the last one from Q
 			} 
 			push @Q,$k;# append k to the rear of Q   
@@ -140,13 +140,13 @@ sub Fast_Count_n_belta {
 	return($nb[$n]); 
 }
 
-sub bs{ 
- local($k,$i)=@_; 
- if ($i==0) { 
-    return(0); 
- }else{ 
-   return( $b[$x[$i]]+$k-$x[$i]-1 );
- } 
+sub bs{ # bs(i,j) denote the "belta(i,j)" in the paper
+	local($k,$i)=@_; 
+	if ($i==0) { 
+		return(0); 
+	}else{ 
+		return( $b[$x[$i]]+$k-$x[$i]-1 );
+	} 
 } 
 
 sub brute_force {
