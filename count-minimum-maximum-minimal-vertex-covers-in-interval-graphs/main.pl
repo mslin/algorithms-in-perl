@@ -93,8 +93,8 @@ sub Count_n_alpha {
 }
 
 sub Fast_Count_n_belta {	
-	@b=(); # 'b(i)' denotes the "belta(i)" in the paper
-	@nb=();# 'nb(i)' denotes the "#belta(i)" in the paper
+	@b=(); # 'b(i)' denotes the 'belta(i)' in the paper
+	@nb=();# 'nb(i)' denotes the '#belta(i)' in the paper
 	@Q=(); # double end queue
 	# Double end Queue Q
 	#-------------------<<------ PUSH
@@ -108,11 +108,11 @@ sub Fast_Count_n_belta {
 	@Q=(0);# initial value
 	$nb[0]=1; # initial value	
 	for ($k=1; $k <= $n ; $k++){
-		if (&bs($k,$k) > &bs($k,$Q[0])){# step 1, bs(i,j) denotes the "belta(i,j)" in the paper
+		if (&bs($k,$k) > &bs($k,$Q[0])){# step 1, 'bs(i,j)' denotes the 'belta(i,j)' in the paper
 			@Q=(); # empty queue
 			push @Q,$k; # append k to the rear of Q
 			$b[$k]=&bs($k,$k);
-			$nb[$k]=$nb[$x[$k]]; # nb(x(i)) denotes the "#belta(*,i) in the paper
+			$nb[$k]=$nb[$x[$k]]; # 'nb(x(i))' denotes the '#belta(*,i)' in the paper
 		}else{# step 2
 			$nb[$k]=$nb[$k-1];
 			while ( defined($Q[0]) && $Q[0] < ($y[$k]+1) ){# Q[0] denotes the front of Q, Q(F)
@@ -140,7 +140,7 @@ sub Fast_Count_n_belta {
 	return($nb[$n]); 
 }
 
-sub bs{ # bs(i,j) denote the "belta(i,j)" in the paper
+sub bs{ # 'bs(i,j)' denotes the 'belta(i,j)' in the paper
 	local($k,$i)=@_; 
 	if ($i==0) { 
 		return(0); 
