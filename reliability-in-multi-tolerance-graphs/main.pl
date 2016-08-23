@@ -86,8 +86,8 @@ while ( $test++ < 20 ){ # test 20 random instances
 print "\n Tests completed successfully.\n";
 
 sub Compute_2TR {	
-  &Compute_V_P(); # compute V(s), ps(s), and ips(s) for each scanline s
-  &Compute_f(); # pre-compute all f(si,sk)
+	&Compute_V_P(); # compute V(s), ps(s), and ips(s) for each scanline s
+	&Compute_f(); # pre-compute all f(si,sk)
 	return( &Compute_R());
 }
 
