@@ -140,7 +140,7 @@ sub Fast_Count_n_belta {
 	return($nb[$n]); 
 }
 
-sub bs{ # 'bs(i,j)' denotes the 'belta(i,j)' in the paper
+sub bs { # 'bs(i,j)' denotes the 'belta(i,j)' in the paper
 	local($k,$i)=@_; 
 	if ($i==0) { 
 		return(0); 
