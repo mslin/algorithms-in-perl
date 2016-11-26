@@ -187,18 +187,18 @@ sub compute_f {
 
 # compute Pr[E(sk)] and Rk(A)
 sub compute_R {
-  my ($k, $i, $R, $qvs, $v);
-  my @PrE=();
+	my ($k, $i, $R, $qvs, $v);
+	my @PrE=();
   
-  for ($k=0; $k < $m; $k++){
-    $PrE[$k]=1;    
-    foreach $i ($ps[$k]->elements){ # for each predecessor of k
-        $PrE[$k] -= $PrE[$i]*$f[$i][$k];
-    }
-  }
+	for ($k=0; $k < $m; $k++){
+		$PrE[$k]=1;    
+		foreach $i ($ps[$k]->elements){ # for each predecessor of k
+			$PrE[$k] -= $PrE[$i]*$f[$i][$k];
+		}
+	}
 
-  $R=1; 
-  for ($k=0; $k < $m; $k++){
+	$R=1; 
+	for ($k=0; $k < $m; $k++){
 		$qvs=1;
 		for $v ($A[$k]->elements){
 			$qvs *= $q[$v];
