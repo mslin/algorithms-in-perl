@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #
-# Compute the K-terminal reliability of a circular arc graph.
+# Compute the K-terminal reliability of a circular-arc graph.
 #
 # by Min-Sheng Lin
 #
