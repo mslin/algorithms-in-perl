@@ -88,39 +88,39 @@ sub compute_A_P {
 # Step 2: split the scanpoints into reliable runs or unreliable runs, and
 # Step 3: Starting from the first unreliable scanpoint of an arbitrary unreliable run, label all unreliable scanpoints from 1 to z in the clockwise direction, where z is the number of unreliable scanpoints
 
-  for ($k=0 ; $k < 2*$n; $k++){  # find the first reliable scanpoint k
-    last if ($reliable_scanpoint[$k]);
-  }
+	for ($k=0 ; $k < 2*$n; $k++){  # find the first reliable scanpoint k
+		last if ($reliable_scanpoint[$k]);
+	}
 	$start=$k;
-  $s=($start+1)%(2*$n); # next scanpoint
+	$s=($start+1)%(2*$n); # next scanpoint
   
-  $r=0; $z=0;
-  @run_index=();  # run_index[z]=r means that the unreliable scanpoint is in run r;
-  @Apx=();  # store the arcs containing the scanpoint with new label z
+	$r=0; $z=0;
+	@run_index=();  # run_index[z]=r means that the unreliable scanpoint is in run r;
+	@Apx=();  # store the arcs containing the scanpoint with new label z
   
-  while ( $s!= $start){ # scan circularly
-    $s=($s+1)%(2*$n) while ($reliable_scanpoint[$s] && $s!=$start); # reliable_scanpoint -> unreliable scanpoint
-    last if ($s==$start);
-    for ($j=0; !$reliable_scanpoint[$s] ; $s=($s+1)%(2*$n), $j++){
+	while ( $s!= $start){ # scan circularly
+		$s=($s+1)%(2*$n) while ($reliable_scanpoint[$s] && $s!=$start); # reliable_scanpoint -> unreliable scanpoint
+		last if ($s==$start);
+		for ($j=0; !$reliable_scanpoint[$s] ; $s=($s+1)%(2*$n), $j++){
 			$z++;	
 			$run_index[$z]=$r;  # the scanpoint z is in unreliable run r;
 			$Apx[$z]=Set::Scalar->new;   # store the arcs v containing the scanpoint k
 			$Apx[$z]=$Ap[$s]->clone;	  			
-    }
-    $r++; # run number++
-  }
+		}
+		$r++; # run number++
+	}
 	
 	$run=$r;   
 	return  if ($run < 2); # if the number of unreliable run < 2 then return
 	
 # Step 4: compute A(s) and P(s) for each unreliable scanpoint s	
-  $k=0; 
-  @A=();  
-  %scanline_p1p2_invert=(); @scanline_p1=(); @scanline_p2=();
-  $s=0;  
-  for ($p1=1; $p1 <= $z-1 ; $p1++){
-    for ($p2=$z ; $p2 >=$p1+1; $p2--){
-	  next if ($run_index[$p1]==$run_index[$p2]); # skip if p1 and p2 are in the same run
+	$k=0; 
+	@A=();  
+	%scanline_p1p2_invert=(); @scanline_p1=(); @scanline_p2=();
+	$s=0;  
+	for ($p1=1; $p1 <= $z-1 ; $p1++){
+		for ($p2=$z ; $p2 >=$p1+1; $p2--){
+			next if ($run_index[$p1]==$run_index[$p2]); # skip if p1 and p2 are in the same run
 	  
 			#-- compute A(s): the set of arcs which contains at least one endpoint of unreliable scanline s
 			$A[$s]=Set::Scalar->new;  # the set of arcs that contain at least one endpoint (p1 or p2) of unreliabile scanline s
