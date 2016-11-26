@@ -1,0 +1,3 @@
+**Source:** Chen, C. M., & Lin, M. S. (2016). Computing K-Terminal Reliability of Circular-Arc Graphs. IEICE TRANSACTIONS on Information and Systems 99(12).
+
+**Abstract:** Let G be a graph and K be a set of target vertices of G. Assume that all vertices of G, except the vertices in K, may fail with given probabilities. The K-terminal reliability of G is the probability that all vertices in K are mutually connected. This reliability problem is known to be #P-complete for general graphs. This work develops the first polynomial-time algorithm for computing the K-terminal reliability of circular-arc graphs.
