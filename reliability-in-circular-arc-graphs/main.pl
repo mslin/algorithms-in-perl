@@ -146,10 +146,10 @@ sub compute_A_P {
 		} # for p2
 	}	# for p1
 	
-  $m=$s; # m denotes the number of unreliable scanlines
+	$m=$s; # m denotes the number of unreliable scanlines
 	
-  #-- compute the partial order sets
-  @ps=();
+	#-- compute the partial order sets
+	@ps=();
 	for ($i=0; $i < $m ; $i++){
 		$ps[$i]= Set::Scalar->new;     
 		for ($j=0; $j < $m ; $j++){
