@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #
-# compute the K-terminal reliability of a proper circular arc graph
+# compute the K-terminal reliability of a proper circular-arc graph
 # complexity: O(|V|+|E|)
 #
 # by Min-Sheng Lin
@@ -227,7 +227,7 @@ sub new_g {
 		$i=($i+1)%(2*$n);
 	}
   
-  #--- set the target nodes
+	#--- set the target nodes
 	$K->clear; @Kx=();
 	for($v=0; $v <= $n-1 ; $v++){
 		if (rand(1) < $target_p){
