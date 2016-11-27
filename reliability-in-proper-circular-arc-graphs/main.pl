@@ -46,6 +46,7 @@ while ( $test++ < 100 ){ # test 100 random instances
 }										 
 print "\n Tests completed successfully.\n";
 
+# compute the K-terminal reliability of a proper circular-arc graph in linear time
 sub compute_KTR {
 	my($k,$v,$i,$j,$s,$t);
 	my(@f,@qx);
