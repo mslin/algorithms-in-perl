@@ -28,7 +28,7 @@ $m=0; # the number of unreliable scanlines
 @f=();
 
 while ( $test++ < 100 ){ # test 100 random instances	
-  &new_g();# create a random circular-arc graph
+	&new_g();# create a random circular-arc graph
 	next if ($K->size < 2); # G must have at least two target vertices
 	
 	$ktr1=&compute_KTR();	# apply our proposed algorithm
