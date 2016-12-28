@@ -24,7 +24,7 @@ $K=Set::Scalar->new; ; #the set of K target nodes
 @proper_circular_arc_diagram=();
 $g=Graph::Undirected->new();	
 
-while ( $test++ < 100 ){ # test 100 random instances	
+while ( $test++ < 10000 ){ # test 100 random instances	
 	&new_g(); # create a random proper circular-arc graph
 	next if ($K->size < 2); # at least two target vertices
 	&construct_g(); # convert the proer circular arc diagram to the corresponding proper circular arc graph
