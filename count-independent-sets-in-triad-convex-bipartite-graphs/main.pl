@@ -58,13 +58,13 @@ sub print_g{
 		}	
 		print " Nv[$b]={",join(",",@a),"};";		
 	}
-  print "\n";
+	print "\n";
 }
 
 sub compute_triad_IS{  
 	my (@IS1,@IS2,$i,$j,$k,$s,$t,$vset,$hset,$y,$y1,$IS);
 	@IS1=@IS2=(); $IS=0;
-  #-- G1: vertical
+	#-- G1: vertical
 	$IS1[0]=1;  
 	for ($i=0 ; $i <=$nv ; $i++){
 		for ($k=$i+1 ; $k <=$nv+1 ; $k++){	    
@@ -240,7 +240,7 @@ sub new_g {   #create a random triad convex tree bipartite graph
 		}	
 	}# for each u in Y
 
-  # compute N[b] for each b in Y, and N{hi}, N{vi} for each hi,vi in X
+	# compute N[b] for each b in Y, and N{hi}, N{vi} for each hi,vi in X
 	for ($i=0 ; $i <= $nh+1 ; $i++){
 		$N{"h$i"}= Set::Scalar->new;   
 	}
