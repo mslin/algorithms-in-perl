@@ -36,7 +36,7 @@ while ( $test++ < 10000 ){ # test 100 random instances
 	print "KTR=$ktr1\n";
 	
 	print "the brute-force algorithm: ";
-	($ktr2)=&brute_force();
+	($ktr2)=&brute_force(); 
 	print "KTR=$ktr2\n";
 
 	if( ($ktr1-$ktr2) > 0.000001 || ($ktr2-$ktr1) > 0.000001 ){
