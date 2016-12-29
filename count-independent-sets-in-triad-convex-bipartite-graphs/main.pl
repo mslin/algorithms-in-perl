@@ -23,7 +23,7 @@ $n=$nv+$nh; # problem size
 @b=@bx=();  # $b[b] is the bottom 'a' point connecting 'b'
 $xp=0;    #  xp(ht in the paper) is the vertex on h-path that adjoins the bottom vertex vq on v-path in T.
 
-while ( $test++ < 5 ){ # test 20 random instances	  	  
+while ( $test++ < 20 ){ # test 20 random instances	  	  
 	&new_g(); #generate a triad convex tree bipartite randomly  
 	print "\n== test$test: triad convex bipartite graph: |Xh|=$nh, |Xv|=$nv, |Y|=$m, xp=$xp\ ==\n";
 	&print_g();	
