@@ -1,0 +1,3 @@
+**Source:** Lin, M. S., & Chen, C. M. (2017). Linear-Time Algorithms for Counting Independent Sets in Bipartite Permutation Graphs. Information Processing Letters, 122(6), 1-7.
+
+**Abstract:**  The counting of independent sets in bipartite graphs is a #P-complete problem but counting those in permutation graphs is a problem that can be solved in polynomial-time. This paper develops some linear-time algorithms for counting independent sets, maximal independent sets, and independent perfect dominating sets in the class of bipartite permutation graphs, which is the intersection class between permutation and bipartite graphs.
