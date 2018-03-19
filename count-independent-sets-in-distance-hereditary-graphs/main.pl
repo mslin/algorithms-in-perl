@@ -42,14 +42,6 @@ while ( $test++ < 20 ){ # test 20 random instances
 
 	if( $IS1!=$IS2 || $IDS1 != $IDS2 || $IPDS1 != $IPDS2){
 		print "An error occured. Stop!\n";
-		print "IS=$IS1, IDS=$IDS1, IPDS=$IPDS1\n";	
-		print "IS=$IS2, IDS=$IDS2, IPDS=$IPDS2\n";	
-		print "g : $g\n";	# top line
-		print "op: ";
-		foreach $v (2..$n){
-			print "$v$op[$v]$twin[$v]  ";
-		}
-		print "\n";			
 		exit;
 	}
 }										 
