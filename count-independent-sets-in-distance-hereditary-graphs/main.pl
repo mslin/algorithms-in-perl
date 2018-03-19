@@ -13,9 +13,8 @@ $|=1;
 
 #globals
 $n=8; 	# problem size
-$p1=1; $p2=1; $p3=1;  # the ration of "pendant : false twins : true twins"
+$p1=1; $p2=1; $p3=1;  # the ratio of "pendant : false twins : true twins"
 
-@p=(); # the reliability probability of each vertex, target vertex v: $p[$v]=1, nontarget vertex v: $p[$v]=$p
 @op=();
 @twin=();
 $g=();
