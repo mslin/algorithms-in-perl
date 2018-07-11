@@ -55,7 +55,7 @@ print "\n Tests completed successfully.\n";
 
 sub Compute_KTR {
 	@reverse_order=();	
-	&post_order_travesal($kr);  # compute the sequence of reverse topological order and store it in @reverse_order;  
+	&post_order_traversal($kr);  # compute the sequence of reverse topological order and store it in @reverse_order;  
 	
 	@ancestor=();
 	&find_ancestor($kr);# find the ancestors for each node, if A is a ancestor of B, then $ancestor[B][A]=1 for all A,B in the clique tree
@@ -78,12 +78,12 @@ sub Compute_KTR {
 	return($ktr);
 } 
 
-sub post_order_travesal{
+sub post_order_traversal{
 	my($t)=@_;     
 	my($c);
 	return if (!$t); # null node
 	foreach $c ($t->getAllChildren()){
-		&post_order_travesal($c); 
+		&post_order_traversal($c); 
 	}
 	push(@reverse_order,$t); 
 }
