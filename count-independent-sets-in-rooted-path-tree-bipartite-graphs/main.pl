@@ -67,7 +67,7 @@ print "\n Tests completed successfully.\n";
 
 #---------------------------------------------------------------------
 # count independent sets (ISs) in a rooted path-tree bipartite graph
-# time complexity: O(|nx|^2+|ny|)
+# time complexity: O(|nx|^2*|ny|)
 #---------------------------------------------------------------------
 sub count_IS { 			
 	my @is;
@@ -94,7 +94,7 @@ sub count_IS {
 
 #-----------------------------------------------------------------------------
 # count maximal independent sets (MISs) in a rooted path-tree bipartite graph
-# time complexity: O(max{|nx|^2+|ny|,|nx|^3})
+# time complexity: O(max{|nx|^2*|ny|,|nx|^3})
 #-----------------------------------------------------------------------------
 sub count_MIS { 	
 	my (@mis,@misx);	
