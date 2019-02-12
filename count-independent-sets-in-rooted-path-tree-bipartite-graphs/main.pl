@@ -43,7 +43,7 @@ while ( $test++ < 20 ){ # test 20 random instances
 	@post_order=();
 	&post_order_travesal($x0); # setup @post_order
 	
-  #   compute beta
+	#   compute beta
 	@y_start=@y_end=();
 	&dfs_for_y_boundary($x0);
 	&count_beta($x0);
