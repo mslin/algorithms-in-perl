@@ -1,0 +1,3 @@
+**Source:** Lin, M. S. (2021). Fast and simple algorithms for counting dominating sets in distance-hereditary graphs. Discrete Mathematics, Algorithms and Applications, 13(2), 2150012.
+
+**Abstract:** Counting dominating sets (DSs) in a graph is a #P-complete problem even for chordal bipartite graphs and split graphs, which are both subclasses of weakly chordal graphs. This paper investigates this problem for distance-hereditary graphs, which is another known subclass of weakly chordal graphs. This work develops linear-time algorithms for counting DSs and their two variants, total DSs and connected DSs in distance-hereditary graphs.
