@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 #
-# Count independent sets, dominating sets, independent dominating sets (maximal independent sets),
-# and independent perfect dominating sets in a generalized series-parallel graph
+# Count independent sets, dominating sets, independent dominating sets (maximal independent sets), connected dominating sets,
+# total dominating sets and independent perfect dominating sets in a generalized series-parallel graph
 #
 # Time complexity: O(n)
 #
