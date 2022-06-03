@@ -3,7 +3,6 @@
 # by Min-Sheng Lin
 use Set::Scalar;
 use Tree::Simple;
-use Graph;
 use Graph::Undirected;
 #globals
 $max_node_size=5; # root size
@@ -258,8 +257,7 @@ sub Count_DSx {
 					}# else ui != vi		
 					$AU[$x][$v] += $A[$x][$v][$u] if ($start[$u]!=$x); # update AU[x][v]
 				} #if Vx has u and v							
-				$childPos++ if ( ($Sw[$ui]+$Sb[$ui]+$C[$ui]) == 0 && $Sv[$ui][$u] > 0); # check if Sw is positive after updating?	
-				
+				$childPos++ if ( ($Sw[$ui]+$Sb[$ui]+$C[$ui]) == 0 && $Sv[$ui][$u] > 0); # check if Sw is positive after updating?					
 				$SS = $SS / ($Sw[$ui]+$Sb[$ui]+$C[$ui]) if (($Sw[$ui]+$Sb[$ui]+$C[$ui])> 0); # update Sw and SS
 				$Sw[$ui] += $Sv[$ui][$u]; # update Sw
 				$SS = $SS * ($Sw[$ui]+$Sb[$ui]+$C[$ui]) if (($Sw[$ui]+$Sb[$ui]+$C[$ui])> 0);	
@@ -303,7 +301,6 @@ sub Count_DSx {
 			$Si[$w] += $B[$w][$v] + $AU[$w][$v]; # update the summation of B[w][v]s + AU[w][v] in node w
 			$SS = $SS * $Si[$w] if ($Si[$w] > 0);
 		} # foreach v	
-
 		#-- compute B2(x,v) that does not contain x --
 		@Si=();
 		$SS=1;
@@ -476,7 +473,6 @@ sub create_tree {
 }
 
 sub construct_graph {
-	use Graph;
 	$g = Graph::Undirected->new();
 	for ($a=1; $a<=$nx; $a++){ 
 		for ($b=1; $b<=$ny; $b++){      
